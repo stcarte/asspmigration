@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASSP Migration · Manager Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="app" id="app">
+        <!-- Top toolbar -->
+        <header class="toolbar">
+            <div class="toolbar__search">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" />
+                </svg>
+                <input
+                    type="text"
+                    placeholder="Search open conversations, people, or event titles"
+                    aria-label="Search"
+                />
+            </div>
+
+            <div class="toolbar__filter">
+                <label class="select">
+                    <span class="select__label">Filter by result</span>
+                    <select aria-label="Filter by result">
+                        <option>All results</option>
+                        <option>Oral Warning</option>
+                        <option>Written Warning</option>
+                        <option>Suspension</option>
+                        <option>Counseling</option>
+                    </select>
+                    <svg class="select__chevron" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </label>
+            </div>
+
+            <div class="toolbar__actions">
+                <button class="icon-btn" id="themeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+                    </svg>
+                </button>
+                <button class="btn-reset" id="resetBtn">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M9 9l6 6M15 9l-6 6" />
+                    </svg>
+                    Reset
+                </button>
+            </div>
+        </header>
+
+        <!-- KPI cards -->
+        <section class="kpis" aria-label="Key metrics">
+            <article class="kpi kpi--mb">
+                <header class="kpi__head">
+                    <span class="kpi__label">Open Events</span>
+                    <span class="kpi__dot" aria-hidden="true"></span>
+                </header>
+                <div class="kpi__value">3</div>
+                <p class="kpi__sub">Awaiting action or close-out</p>
+                <div class="kpi__spark" aria-hidden="true"></div>
+            </article>
+
+            <article class="kpi kpi--pg">
+                <header class="kpi__head">
+                    <span class="kpi__label">Active I6s</span>
+                    <span class="kpi__dot" aria-hidden="true"></span>
+                </header>
+                <div class="kpi__value">131</div>
+                <p class="kpi__sub">Live discipline records in scope</p>
+                <div class="kpi__spark" aria-hidden="true"></div>
+            </article>
+
+            <article class="kpi kpi--tg">
+                <header class="kpi__head">
+                    <span class="kpi__label">Active LCAs</span>
+                    <span class="kpi__dot" aria-hidden="true"></span>
+                </header>
+                <div class="kpi__value">15</div>
+                <p class="kpi__sub">Approaching end dates and reviews</p>
+                <div class="kpi__spark" aria-hidden="true"></div>
+            </article>
+
+            <article class="kpi kpi--alert">
+                <header class="kpi__head">
+                    <span class="kpi__label">Probation</span>
+                    <span class="kpi__dot" aria-hidden="true"></span>
+                </header>
+                <div class="kpi__value">37</div>
+                <p class="kpi__sub">Headcount currently on watch</p>
+                <div class="kpi__spark" aria-hidden="true"></div>
+            </article>
+        </section>
+
+        <!-- Main grid -->
+        <section class="grid">
+            <!-- LEFT COLUMN -->
+            <div class="col col--left">
+                <!-- Active I6s -->
+                <article class="panel">
+                    <header class="panel__head">
+                        <div>
+                            <h2 class="panel__title">Active I6s</h2>
+                            <p class="panel__sub">Last 12 months, filtered for active outcomes</p>
+                        </div>
+                        <span class="badge badge--count">131</span>
+                    </header>
+
+                    <ul class="list">
+                        <li class="row">
+                            <div class="row__avatar" style="background-image:url('https://i.pravatar.cc/80?img=12')"></div>
+                            <div class="row__main">
+                                <div class="row__name">Melvin Reuben Boyd <span class="row__id">1071056</span></div>
+                                <div class="row__meta">Line Avionics Technician (AMFA)</div>
+                            </div>
+                            <span class="chip chip--zero">0</span>
+                            <span class="chip chip--date">27 Apr 25</span>
+                            <span class="tag tag--oral">Oral Warning</span>
+                        </li>
+                        <li class="row">
+                            <div class="row__avatar" style="background-image:url('https://i.pravatar.cc/80?img=33')"></div>
+                            <div class="row__main">
+                                <div class="row__name">Hunter Brooks <span class="row__id">1087680</span></div>
+                                <div class="row__meta">Lead Line Aircraft Technician (AMFA)</div>
+                            </div>
+                            <span class="chip chip--zero">0</span>
+                            <span class="chip chip--date">30 Apr 25</span>
+                            <span class="tag tag--written">Written Warning</span>
+                        </li>
+                        <li class="row">
+                            <div class="row__avatar" style="background-image:url('https://i.pravatar.cc/80?img=33')"></div>
+                            <div class="row__main">
+                                <div class="row__name">Hunter Brooks <span class="row__id">1087680</span></div>
+                                <div class="row__meta">Lead Line Aircraft Technician (AMFA)</div>
+                            </div>
+                            <span class="chip chip--zero">0</span>
+                            <span class="chip chip--date">30 Apr 25</span>
+                            <span class="tag tag--written">Written Warning</span>
+                        </li>
+                        <li class="row">
+                            <div class="row__avatar row__avatar--placeholder" aria-hidden="true">LW</div>
+                            <div class="row__main">
+                                <div class="row__name">Luis Ariel Wong <span class="row__id">1055185</span></div>
+                                <div class="row__meta">Stores Agent (IAMR)</div>
+                            </div>
+                            <span class="chip chip--zero">0</span>
+                            <span class="chip chip--date">07 May 25</span>
+                            <span class="tag tag--suspension">Suspension</span>
+                        </li>
+                        <li class="row">
+                            <div class="row__avatar" style="background-image:url('https://i.pravatar.cc/80?img=47')"></div>
+                            <div class="row__main">
+                                <div class="row__name">Sheyenne Nelson Graywood <span class="row__id">1047875</span></div>
+                                <div class="row__meta">Lead Stores Agent (IAMR)</div>
+                            </div>
+                            <span class="chip chip--zero">0</span>
+                            <span class="chip chip--date">07 May 25</span>
+                            <span class="tag tag--suspension">Suspension</span>
+                        </li>
+                        <li class="row">
+                            <div class="row__avatar row__avatar--placeholder" aria-hidden="true">LL</div>
+                            <div class="row__main">
+                                <div class="row__name">Lauren D Lacy <span class="row__id">1090036</span></div>
+                                <div class="row__meta">Stores Agent (IAMR)</div>
+                            </div>
+                            <span class="chip chip--zero">0</span>
+                            <span class="chip chip--date">07 May 25</span>
+                            <span class="tag tag--suspension">Suspension</span>
+                        </li>
+                        <li class="row">
+                            <div class="row__avatar row__avatar--placeholder" aria-hidden="true">MB</div>
+                            <div class="row__main">
+                                <div class="row__name">Michael S Baker <span class="row__id">1005941</span></div>
+                                <div class="row__meta">Lead Line Aircraft Technician (AMFA)</div>
+                            </div>
+                            <span class="chip chip--zero">0</span>
+                            <span class="chip chip--date">07 May 25</span>
+                            <span class="tag tag--oral">Oral Warning</span>
+                        </li>
+                    </ul>
+                </article>
+
+                <!-- LCAs (Active) -->
+                <article class="panel">
+                    <header class="panel__head">
+                        <div>
+                            <h2 class="panel__title">LCAs (Active)</h2>
+                            <p class="panel__sub">Upcoming end dates needing visibility</p>
+                        </div>
+                        <span class="badge badge--warn">15</span>
+                    </header>
+
+                    <ul class="list">
+                        <li class="row row--highlight">
+                            <div class="row__avatar" style="background-image:url('https://i.pravatar.cc/80?img=15')"></div>
+                            <div class="row__main">
+                                <div class="row__name">Austin Mahoney <span class="row__id">1080618</span></div>
+                                <div class="row__meta">49 days remaining</div>
+                            </div>
+                            <span class="chip chip--date chip--warn">10 Jun 26</span>
+                        </li>
+                        <li class="row">
+                            <div class="row__avatar row__avatar--ribbon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24"><path d="M12 2s3 4 3 8-3 12-3 12-3-8-3-12 3-8 3-8Z"/></svg>
+                            </div>
+                            <div class="row__main">
+                                <div class="row__name">Joy Nixon <span class="row__id">1020883</span></div>
+                                <div class="row__meta">74 days remaining</div>
+                            </div>
+                            <span class="chip chip--date">05 Jul 26</span>
+                        </li>
+                        <li class="row">
+                            <div class="row__avatar row__avatar--placeholder" aria-hidden="true">RH</div>
+                            <div class="row__main">
+                                <div class="row__name">Rowena Humangit Monillas <span class="row__id">1046458</span></div>
+                                <div class="row__meta">112 days remaining</div>
+                            </div>
+                            <span class="chip chip--date">12 Aug 26</span>
+                        </li>
+                        <li class="row">
+                            <div class="row__avatar" style="background-image:url('https://i.pravatar.cc/80?img=55')"></div>
+                            <div class="row__main">
+                                <div class="row__name">Oscar A Mendoza Jr. <span class="row__id">1025062</span></div>
+                                <div class="row__meta">164 days remaining</div>
+                            </div>
+                            <span class="chip chip--date">03 Oct 26</span>
+                        </li>
+                        <li class="row">
+                            <div class="row__avatar" style="background-image:url('https://i.pravatar.cc/80?img=45')"></div>
+                            <div class="row__main">
+                                <div class="row__name">Sheena Lyte <span class="row__id">1072015</span></div>
+                                <div class="row__meta">169 days remaining</div>
+                            </div>
+                            <span class="chip chip--date">08 Oct 26</span>
+                        </li>
+                        <li class="row">
+                            <div class="row__avatar" style="background-image:url('https://i.pravatar.cc/80?img=60')"></div>
+                            <div class="row__main">
+                                <div class="row__name">Sherman De Silva <span class="row__id">1068228</span></div>
+                                <div class="row__meta">194 days remaining</div>
+                            </div>
+                            <span class="chip chip--date">02 Nov 26</span>
+                        </li>
+                        <li class="row">
+                            <div class="row__avatar row__avatar--placeholder" aria-hidden="true">DD</div>
+                            <div class="row__main">
+                                <div class="row__name">Douglas Robert DeBarger <span class="row__id">1085812</span></div>
+                                <div class="row__meta">227 days remaining</div>
+                            </div>
+                            <span class="chip chip--date">05 Dec 26</span>
+                        </li>
+                        <li class="row">
+                            <div class="row__avatar row__avatar--placeholder" aria-hidden="true">MQ</div>
+                            <div class="row__main">
+                                <div class="row__name">Michael Quiroz <span class="row__id">1073007</span></div>
+                                <div class="row__meta">264 days remaining</div>
+                            </div>
+                            <span class="chip chip--date">11 Jan 27</span>
+                        </li>
+                    </ul>
+                </article>
+            </div>
+
+            <!-- MIDDLE COLUMN -->
+            <div class="col col--middle">
+                <article class="panel">
+                    <header class="panel__head">
+                        <div>
+                            <h2 class="panel__title">To Be Issued</h2>
+                            <p class="panel__sub">Open conversations that still need manager action</p>
+                        </div>
+                        <span class="badge badge--count">3</span>
+                    </header>
+
+                    <ul class="list list--issue">
+                        <li class="issue">
+                            <div class="issue__top">
+                                <span class="tag tag--counseling">Counseling</span>
+                                <span class="issue__person">
+                                    <span class="avatar avatar--sm" style="background-image:url('https://i.pravatar.cc/80?img=22')"></span>
+                                    Clann Marok <span class="row__id">1063576</span>
+                                </span>
+                                <span class="tag tag--fmla">FMLA 0</span>
+                                <span class="chip chip--zero">0</span>
+                                <label class="select select--inline">
+                                    <select aria-label="Status">
+                                        <option>Conversation Con</option>
+                                        <option>I6 Complete</option>
+                                        <option>New</option>
+                                    </select>
+                                    <svg class="select__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                </label>
+                                <button class="ghost-btn" aria-label="View"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                            </div>
+                            <p class="issue__desc"><strong>1063576</strong> Attendance Connection: 1st Counseling</p>
+                        </li>
+
+                        <li class="issue">
+                            <div class="issue__top">
+                                <span class="tag tag--oral">Oral Warning</span>
+                                <span class="issue__person">
+                                    <span class="avatar avatar--sm" style="background-image:url('https://i.pravatar.cc/80?img=22')"></span>
+                                    Clann Marok <span class="row__id">1063576</span>
+                                </span>
+                                <span class="tag tag--fmla">FMLA 0</span>
+                                <span class="chip chip--zero">0</span>
+                                <label class="select select--inline">
+                                    <select aria-label="Status">
+                                        <option>I6 Complete</option>
+                                        <option>Conversation Con</option>
+                                        <option>New</option>
+                                    </select>
+                                    <svg class="select__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                </label>
+                                <button class="ghost-btn" aria-label="View"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                                <button class="pill-btn" title="Bundle">Bu</button>
+                            </div>
+                            <p class="issue__desc"><strong>1063576</strong> Attendance Connection: Oral Warning</p>
+                        </li>
+
+                        <li class="issue">
+                            <div class="issue__top">
+                                <span class="tag tag--oral">Oral Warning</span>
+                                <span class="issue__person">
+                                    <span class="avatar avatar--sm" style="background-image:url('https://i.pravatar.cc/80?img=22')"></span>
+                                    Clann Marok <span class="row__id">1063576</span>
+                                </span>
+                                <span class="tag tag--fmla">FMLA 0</span>
+                                <span class="chip chip--zero">0</span>
+                                <label class="select select--inline">
+                                    <select aria-label="Status">
+                                        <option>New</option>
+                                        <option>Conversation Con</option>
+                                        <option>I6 Complete</option>
+                                    </select>
+                                    <svg class="select__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                                </label>
+                                <button class="ghost-btn" aria-label="View"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                                <button class="pill-btn" title="Bundle">Bu</button>
+                            </div>
+                            <p class="issue__desc"><strong>1063576</strong> Attendance Connection: Oral Warning</p>
+                        </li>
+                    </ul>
+
+                    <div class="empty-hint">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        You're caught up on new escalations — review and clear each item above.
+                    </div>
+                </article>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div class="col col--right">
+                <article class="panel">
+                    <header class="panel__head panel__head--stack">
+                        <div>
+                            <h2 class="panel__title">Probation <span class="panel__count">(37)</span></h2>
+                            <p class="panel__sub">Progress toward goal hours by represented group</p>
+                        </div>
+                        <div class="panel__tools">
+                            <div class="search search--sm">
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"/></svg>
+                                <input type="text" placeholder="Search people" aria-label="Search people" />
+                            </div>
+                            <span class="pill pill--iam">IAM</span>
+                        </div>
+                    </header>
+
+                    <ul class="list list--prob">
+                        <li class="prob prob--active">
+                            <div class="prob__main">
+                                <div class="prob__name">Hudson Du <span class="row__id">1121315</span></div>
+                                <div class="prob__group">IAMR</div>
+                            </div>
+                            <span class="chip chip--count">1</span>
+                            <div class="prob__progress" style="--p:91.7%"><span class="chip chip--date">953.43 / 1040</span></div>
+                        </li>
+                        <li class="prob">
+                            <div class="prob__main">
+                                <div class="prob__name">Destiny Joy Sitani <span class="row__id">1122028</span></div>
+                                <div class="prob__group">IAMR</div>
+                            </div>
+                            <span class="chip chip--count">1</span>
+                            <div class="prob__progress" style="--p:77.5%"><span class="chip chip--date">806.42 / 1040</span></div>
+                        </li>
+                        <li class="prob">
+                            <div class="prob__main">
+                                <div class="prob__name">Douglas A Davis <span class="row__id">1079615</span></div>
+                                <div class="prob__group">IAMR</div>
+                            </div>
+                            <span class="chip chip--count">0</span>
+                            <div class="prob__progress" style="--p:74.3%"><span class="chip chip--date">772.22 / 1040</span></div>
+                        </li>
+                        <li class="prob">
+                            <div class="prob__main">
+                                <div class="prob__name">Donald G Boles <span class="row__id">1122004</span></div>
+                                <div class="prob__group">IAMR</div>
+                            </div>
+                            <span class="chip chip--count">3</span>
+                            <div class="prob__progress" style="--p:72.7%"><span class="chip chip--date">755.6 / 1040</span></div>
+                        </li>
+                        <li class="prob">
+                            <div class="prob__main">
+                                <div class="prob__name">Milika Senivuga Musuka <span class="row__id">1122432</span></div>
+                                <div class="prob__group">IAMR</div>
+                            </div>
+                            <span class="chip chip--count">1</span>
+                            <div class="prob__progress" style="--p:65.9%"><span class="chip chip--date">685.7 / 1040</span></div>
+                        </li>
+                        <li class="prob">
+                            <div class="prob__main">
+                                <div class="prob__name">David S Glenn <span class="row__id">1122413</span></div>
+                                <div class="prob__group">IAMR</div>
+                            </div>
+                            <span class="chip chip--count">0</span>
+                            <div class="prob__progress" style="--p:63.4%"><span class="chip chip--date">659.6 / 1040</span></div>
+                        </li>
+                        <li class="prob">
+                            <div class="prob__main">
+                                <div class="prob__name">Anelia Fatuesi <span class="row__id">1122554</span></div>
+                                <div class="prob__group">IAMR</div>
+                            </div>
+                            <span class="chip chip--count">0</span>
+                            <div class="prob__progress" style="--p:55.9%"><span class="chip chip--date">580.9 / 1040</span></div>
+                        </li>
+                        <li class="prob">
+                            <div class="prob__main">
+                                <div class="prob__name">Alexis Renee Goodwyn <span class="row__id">1122551</span></div>
+                                <div class="prob__group">IAMR</div>
+                            </div>
+                            <span class="chip chip--count">2</span>
+                            <div class="prob__progress" style="--p:55.3%"><span class="chip chip--date">574.75 / 1040</span></div>
+                        </li>
+                        <li class="prob">
+                            <div class="prob__main">
+                                <div class="prob__name">Michael Ike Quintanilla <span class="row__id">1122560</span></div>
+                                <div class="prob__group">IAMR</div>
+                            </div>
+                            <span class="chip chip--count">0</span>
+                            <div class="prob__progress" style="--p:54.7%"><span class="chip chip--date">568.35 / 1040</span></div>
+                        </li>
+                        <li class="prob">
+                            <div class="prob__main">
+                                <div class="prob__name">Manar Al-Qawasmeh <span class="row__id">1122550</span></div>
+                                <div class="prob__group">IAMR</div>
+                            </div>
+                            <span class="chip chip--count">1</span>
+                            <div class="prob__progress" style="--p:52.5%"><span class="chip chip--date">545.6 / 1040</span></div>
+                        </li>
+                        <li class="prob">
+                            <div class="prob__main">
+                                <div class="prob__name">Kevin Dahl <span class="row__id">1122694</span></div>
+                                <div class="prob__group">IAMR</div>
+                            </div>
+                            <span class="chip chip--count">0</span>
+                            <div class="prob__progress" style="--p:47.7%"><span class="chip chip--date">495.7 / 1040</span></div>
+                        </li>
+                        <li class="prob">
+                            <div class="prob__main">
+                                <div class="prob__name">Justin Crabtree <span class="row__id">1122664</span></div>
+                                <div class="prob__group">IAMR</div>
+                            </div>
+                            <span class="chip chip--count">0</span>
+                            <div class="prob__progress" style="--p:46.8%"><span class="chip chip--date">486.1 / 1040</span></div>
+                        </li>
+                        <li class="prob">
+                            <div class="prob__main">
+                                <div class="prob__name">Therrin Smith <span class="row__id">1122657</span></div>
+                                <div class="prob__group">IAMR</div>
+                            </div>
+                            <span class="chip chip--count">1</span>
+                            <div class="prob__progress" style="--p:46.1%"><span class="chip chip--date">479.4 / 1040</span></div>
+                        </li>
+                        <li class="prob">
+                            <div class="prob__main">
+                                <div class="prob__name">Kelvyn K Tesoro <span class="row__id">1122671</span></div>
+                                <div class="prob__group">IAMR</div>
+                            </div>
+                            <span class="chip chip--count">1</span>
+                            <div class="prob__progress" style="--p:45.6%"><span class="chip chip--date">474.7 / 1040</span></div>
+                        </li>
+                        <li class="prob">
+                            <div class="prob__main">
+                                <div class="prob__name">Jacob J A Isaacs <span class="row__id">1086833</span></div>
+                                <div class="prob__group">IAMR</div>
+                            </div>
+                            <span class="chip chip--count">0</span>
+                            <div class="prob__progress" style="--p:15.1%"><span class="chip chip--date">72.4 / 480</span></div>
+                        </li>
+                        <li class="prob">
+                            <div class="prob__main">
+                                <div class="prob__name">Robert A Hemsworth <span class="row__id">1080546</span></div>
+                                <div class="prob__group">IAMR</div>
+                            </div>
+                            <span class="chip chip--count">0</span>
+                            <div class="prob__progress" style="--p:9.2%"><span class="chip chip--date">44.1 / 480</span></div>
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <footer class="foot">
+            <span>ASSP Migration · Manager Dashboard</span>
+            <span>Alaska Airlines design system · palette sourced from <code>scpAlaskaColor()</code></span>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
